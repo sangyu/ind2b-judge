@@ -139,10 +139,19 @@ fabricated"</b>.<ul><li><b>J-1</b> — Trace authenticity</li><li><b>J-2</b> —
 <p>Its tests check that the code does what the author intended. This checks whether the output supports what
 the report claims — a different question, and the one a reviewer actually asks.</p>
 <h4>What would a failure have looked like?</h4>
-<p>It found real ones during development. An earlier version of the evidence bridge cited 72 sources that
-didn't exist; the fidelity checks rejected it. A separate audit found the score treats "evidence nobody
-fetched" identically to "evidence measured at zero" — both contribute nothing, so a target with no data
-ranks level with one measured empty.</p>
+<p>Both failing verdicts below were produced by this tool on an earlier build, and both were fixed before
+this run. <b>Citation integrity (P0-2) failed</b>: the component that converts pipeline output into graded
+records was matching evidence by name prefix, so ratings pointed at evidence records that did not exist —
+the run was marked INCORRECT until the mapping was made explicit. <b>Log completeness (J-4) failed</b> on
+the same build: 72 cited evidence identifiers did not appear anywhere in the run's action log, meaning
+their provenance could not be traced even though the records existed. Both are visible in the tool's own
+output history.</p>
+<h4>And one finding about the score itself</h4>
+<p>Running the pipeline's own scoring function on two synthetic targets shows that a component whose
+evidence was <i>never fetched</i> and one <i>measured at zero</i> both resolve to 0.0 and reach an
+identical composite of 0.11. Absence of evidence and evidence of absence are not currently
+distinguishable in the ranking. This is a reported observation, not a graded row — no check in the table
+above tests it.</p>
 <h4>Is the ranking itself right?</h4>
 <p>Out of scope, deliberately. This grades process, not biology. It says the numbers trace to their sources
 and reproduce on re-run — not that EGFR is the correct target for lung adenocarcinoma.</p>
