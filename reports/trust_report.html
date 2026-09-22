@@ -1,104 +1,163 @@
-<!doctype html><html><head><meta charset="utf-8"><title>ind2b-judge — trust report</title>
-<style>
-*{box-sizing:border-box} body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-color:#1f2328;margin:0;background:#f6f8fa} .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px}
-h1{font-size:26px;margin:0 0 4px} h2{font-size:19px;margin:34px 0 12px;padding-bottom:6px;border-bottom:1px solid #d0d7de}
-h3{font-size:16px;margin:0 0 6px} .sub{color:#57606a;margin:0 0 20px}
-.verdict{display:flex;align-items:center;gap:18px;background:#fff;border:1px solid #d0d7de;border-left:6px solid #1a7f37;
-border-radius:8px;padding:18px 22px;margin:18px 0} .verdict .big{font-size:30px;font-weight:700;color:#1a7f37;letter-spacing:-.5px}
-.tally{display:flex;gap:22px;font-size:13px;color:#57606a} .tally b{display:block;font-size:21px;color:#1f2328}
+<!doctype html><html><head><meta charset="utf-8"><title>Trust report — indication2binder</title><style>
+*{box-sizing:border-box}body{font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:#1f2328;margin:0;background:#f6f8fa}
+.wrap{max-width:1060px;margin:0 auto;padding:34px 24px 70px}h1{font-size:27px;margin:0 0 4px;letter-spacing:-.3px}
+h2{font-size:20px;margin:36px 0 10px;padding-bottom:7px;border-bottom:1px solid #d0d7de}
+h3{font-size:16px;margin:0 0 4px;padding-left:10px}h4{font-size:15px;margin:0 0 4px}
+.sub{color:#57606a;margin:0 0 18px;font-size:13.5px}
+.lede{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:20px 24px;margin:18px 0}
+.lede p{margin:0 0 11px}.lede p:last-child{margin:0}
+.verdict{display:flex;align-items:center;gap:20px;background:#fff;border:1px solid #d0d7de;border-left:6px solid #1a7f37;border-radius:8px;padding:18px 22px;margin:18px 0}
+.big{font-size:31px;font-weight:700;color:#1a7f37;letter-spacing:-.6px;line-height:1}
+.tally{display:flex;gap:24px;font-size:12.5px;color:#57606a}.tally b{display:block;font-size:22px;color:#1f2328}
 table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d0d7de;border-radius:8px;overflow:hidden}
-th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#57606a;background:#f6f8fa;padding:9px 12px;border-bottom:1px solid #d0d7de}
-td{padding:9px 12px;border-bottom:1px solid #eaeef2;vertical-align:top;font-size:13.5px} tr:last-child td{border-bottom:none}
-.id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;white-space:nowrap}
-.v{color:#fff;padding:2px 9px;border-radius:11px;font-size:11px;font-weight:700;letter-spacing:.3px}
-.cite{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#57606a;max-width:210px;word-break:break-all}
-.why{color:#424a53} .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:#57606a;background:#f6f8fa;padding:8px 12px;border-bottom:1px solid #d0d7de}
+td{padding:11px 12px;border-bottom:1px solid #eaeef2;vertical-align:top;font-size:13.5px}tr:last-child td{border-bottom:none}
+.id{font-family:ui-monospace,Menlo,monospace;font-weight:600;white-space:nowrap;color:#57606a;font-size:12px}
+.ct{font-weight:600;margin-bottom:3px}.cd{color:#57606a;font-size:12.5px;line-height:1.5;max-width:420px}
+.v{color:#fff;padding:2px 9px;border-radius:11px;font-size:10.5px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.why{color:#424a53;font-size:12.5px}.cite{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:#8c959f;margin-top:4px;word-break:break-all}
+.grp{margin:22px 0}.gq{color:#57606a;font-size:13px;margin:0 0 10px;padding-left:10px;font-style:italic}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .card{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px 18px}
-.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#57606a;font-weight:400}
-.meta{color:#57606a;font-size:13px;margin:6px 0} .mini td,.mini th{padding:5px 8px;font-size:13px}
-.mini{border:none;margin:8px 0} ul{margin:6px 0;padding-left:20px} .excl li{font-size:13px;color:#424a53;margin:3px 0}
-.note{background:#fff8c5;border:1px solid #d4a72c55;border-radius:6px;padding:12px 16px;font-size:13.5px;margin:14px 0}
-.note.sc{background:#eef3ff;border-color:#adc0f0} code{background:#eff1f3;padding:1px 5px;border-radius:4px;font-size:12.5px}
-footer{margin-top:30px;color:#57606a;font-size:12.5px;border-top:1px solid #d0d7de;padding-top:14px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#8c959f;font-weight:400}
+.meta{color:#57606a;font-size:12.5px;margin:6px 0}.mini{border:none;margin:8px 0}.mini td,.mini th{padding:5px 8px;font-size:12.5px}
+ul{margin:6px 0;padding-left:20px}.excl li{font-size:12.5px;color:#424a53;margin:3px 0}
+.note{background:#fff8c5;border:1px solid #d4a72c55;border-radius:6px;padding:13px 17px;font-size:13px;margin:14px 0}
+.note.sc{background:#eef3ff;border-color:#adc0f0}.note.tp{background:#fff;border-color:#d0d7de}
+code{background:#eff1f3;padding:1px 5px;border-radius:4px;font-size:12px;font-family:ui-monospace,Menlo,monospace}
+.math{background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;padding:12px 16px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.75;margin:10px 0}
+.tp h4{margin:14px 0 5px;font-size:14px}.tp p{margin:0 0 4px;font-size:13.5px;color:#424a53}
+footer{margin-top:32px;color:#57606a;font-size:12px;border-top:1px solid #d0d7de;padding-top:14px}
 </style></head><body><div class="wrap">
+
 <h1>Trust report — indication2binder</h1>
-<p class="sub">Graded by <code>ind2b-judge</code> from persisted run artifacts ·
-pipeline at <code>3bc41a1</code> · 2026-09-22</p>
+<p class="sub">Graded independently by <code>ind2b-judge</code> · pipeline at commit <code>3bc41a1</code> · 2026-09-22</p>
+
+<div class="lede">
+<p><b>What this is.</b> The pipeline reads a disease name and returns a ranked list of protein targets
+worth designing a binder against. Those rankings are numbers, and numbers are persuasive — a table of
+scores looks authoritative whether or not anything supports it. This report is a separate program that
+re-opens what a run left behind and asks, one claim at a time, whether the run's own output holds up.</p>
+<p><b>Why a separate program.</b> A grader that can call into the pipeline can be made to agree with it.
+This one imports none of the pipeline's code; its only inputs are the files a run wrote to disk. It cannot
+ask the system under test what the answer should be, and every pass it reports must cite a specific record —
+an uncited pass is automatically downgraded, because "looks fine" is what a trust check exists to rule out.</p>
+<p><b>How to read it.</b> The checks are grouped by what they protect: whether the reported numbers faithfully
+reflect the underlying evidence, whether the findings would survive being run again, and whether the run is
+honest about what it does not know. A check can also come back <i>not applicable</i> (that stage didn't run)
+or <i>descoped</i> (the team decided against it) — neither is counted as a pass.</p>
+</div>
 
 <div class="verdict"><div><div class="big">CORRECT</div>
-<div style="font-size:12.5px;color:#57606a">deterministic rows</div></div>
-<div class="tally">
-<div><b>8</b>passed</div><div><b>0</b>failed</div><div><b>0</b>unverifiable</div>
-<div><b>4</b>not applicable</div><div><b>2</b>descoped</div></div></div>
-
-<div class="note">The judge imports nothing from the pipeline. Its only inputs are the files a run
-persisted — <code>stage0_disease.json</code>, <code>stage1_evidence.json</code>,
-<code>stage2_ranked_targets.csv</code> — so it cannot be made to pass by the system it grades.
-Every PASS cites a record id; an uncited PASS is downgraded automatically.</div>
+<div style="font-size:12px;color:#57606a;margin-top:3px">on the automatically checkable claims<br>13 checks · outcome honesty verified on both runs</div></div>
+<div class="tally"><div><b>7</b>passed</div><div><b>0</b>failed</div><div><b>0</b>unverifiable</div>
+<div><b>4</b>n/a</div><div><b>2</b>descoped</div></div></div>
 
 <h2>What was graded</h2>
-<div class="cards"><div class="card"><h3>lung adenocarcinoma <span class="mono">MONDO_0005061</span></h3>
-<p class="meta">resolved by <code>exact_name_match</code> · pool <b>40</b> of <b>8,760</b> associated targets · <b>12</b> pass the surface-accessibility gate</p>
+<div class="cards"><div class="card"><h4>lung adenocarcinoma <span class="mono">MONDO_0005061</span></h4>
+<p class="meta">40 of 8,760 associated targets screened · <b>12</b> reachable by a protein binder</p>
 <table class="mini"><tr><th>#</th><th>target</th><th>score</th><th>ectodomain</th></tr><tr><td>1</td><td><b>EGFR</b></td><td>0.785</td><td>621 aa</td></tr><tr><td>2</td><td><b>ALK</b></td><td>0.721</td><td>1020 aa</td></tr><tr><td>3</td><td><b>ERBB2</b></td><td>0.695</td><td>630 aa</td></tr><tr><td>4</td><td><b>MET</b></td><td>0.679</td><td>908 aa</td></tr><tr><td>5</td><td><b>RET</b></td><td>0.674</td><td>607 aa</td></tr></table>
-<p class="meta">Excluded with a recorded reason (not dropped):</p><ul class="excl"><li><b>TP53</b> — no_extracellular_topology_or_secretion</li><li><b>KRAS</b> — membrane_associated_on_cytoplasmic_side</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li></ul></div><div class="card"><h3>melanoma <span class="mono">MONDO_0005105</span></h3>
-<p class="meta">resolved by <code>exact_name_match</code> · pool <b>40</b> of <b>13,604</b> associated targets · <b>10</b> pass the surface-accessibility gate</p>
+<p class="meta" style="margin-top:10px">Excluded, reason kept:</p><ul class="excl"><li><b>TP53</b> — no_extracellular_topology_or_secretion</li><li><b>KRAS</b> — membrane_associated_on_cytoplasmic_side</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li></ul></div><div class="card"><h4>melanoma <span class="mono">MONDO_0005105</span></h4>
+<p class="meta">40 of 13,604 associated targets screened · <b>10</b> reachable by a protein binder</p>
 <table class="mini"><tr><th>#</th><th>target</th><th>score</th><th>ectodomain</th></tr><tr><td>1</td><td><b>PDGFRA</b></td><td>0.73</td><td>505 aa</td></tr><tr><td>2</td><td><b>CTLA4</b></td><td>0.663</td><td>126 aa</td></tr><tr><td>3</td><td><b>KIT</b></td><td>0.645</td><td>499 aa</td></tr><tr><td>4</td><td><b>KDR</b></td><td>0.62</td><td>745 aa</td></tr><tr><td>5</td><td><b>CSF3R</b></td><td>0.569</td><td>603 aa</td></tr></table>
-<p class="meta">Excluded with a recorded reason (not dropped):</p><ul class="excl"><li><b>CDKN2A</b> — no_extracellular_topology_or_secretion</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li><li><b>BAP1</b> — no_extracellular_topology_or_secretion</li></ul></div></div>
+<p class="meta" style="margin-top:10px">Excluded, reason kept:</p><ul class="excl"><li><b>CDKN2A</b> — no_extracellular_topology_or_secretion</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li><li><b>BAP1</b> — no_extracellular_topology_or_secretion</li></ul></div></div>
 
-<h2>Row-by-row verdict</h2>
-<table><tr><th>row</th><th>check</th><th>verdict</th><th>cited</th><th>finding</th></tr><tr><td class="id">P0-1</td><td>Origin labels</td>
+<h2>Where the score comes from</h2>
+<p style="margin-top:0;color:#424a53;font-size:13.5px">Eight weighted components, one multiplicative
+penalty, and a hard gate. Weights live in a config file rather than in the code, so re-weighting is a
+config change and not a rewrite. The top-ranked target reconstructs by hand from the published columns:</p>
+<div class="math">
+EGFR &nbsp;genetic evidence&nbsp; 0.913 × 0.20 = 0.1826<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overall association 0.822 × 0.22 = 0.1808<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;approved-drug precedent 1.000 × 0.14 = 0.1400<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;antibody tractability 1.000 × 0.10 = 0.1000<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;literature 0.992 × 0.10 = 0.0992 &nbsp;·&nbsp; clinical precedent 0.932 × 0.08 = 0.0746<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pathway &amp; model 0.827 × 0.06 = 0.0496 &nbsp;·&nbsp; expression specificity 0.265 × 0.10 = 0.0265<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>sum 0.85323</b> × 0.92 safety penalty (21 liabilities on record) = <b>0.78497</b>
+</div>
+<div class="note">Two deliberate choices worth naming. The safety penalty is <b>flat</b>, not per-liability:
+liability annotations accumulate on targets that have been taken into patients, so compounding it would
+measure how well-studied a target is rather than how risky. And reachability is a <b>gate, not a term</b> —
+a binder that cannot reach its target is not a worse binder, so the score is zeroed rather than reduced.</div>
+
+<h2>The checks</h2>
+<div class="grp"><h3 style="border-left:4px solid #0969da">Fidelity of the numbers</h3><p class="gq">Do the reported values actually come from the evidence, and is each one what it claims to be?</p>
+<table><tr><th>row</th><th>what it checks</th><th>verdict</th><th>finding</th></tr><tr><td class="id">P0-1</td>
+<td><div class="ct">Every number says where it came from</div><div class="cd">Each value carries a label: <b>real</b> (fetched live), <b>cached</b> (replayed from an earlier fetch) or <b>fixture</b> (made-up test data). Without labels a placeholder can end up on a slide indistinguishable from a measurement.</div></td>
 <td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">ev_ENSG00000146648_clinical, ev_ENSG00000146648_affected_pathway, ev_ENSG00000146648_literature</td><td class="why">449 records all carry an origin label</td></tr>
-<tr><td class="id">P0-2</td><td>Evidence links</td>
+<td class="why">449 records all carry an origin label<div class="cite">ev_ENSG00000146648_clinical, ev_ENSG00000146648_affected_pathway</div></td></tr><tr><td class="id">P0-2</td>
+<td><div class="ct">No score without a source behind it</div><div class="cd">Every component rated <i>strong</i> or <i>moderate</i> must point to an evidence record that actually exists. A rating with nothing behind it is reported as <i>unknown</i> instead — a missing source can never quietly become a favourable score.</div></td>
 <td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">ENSG00000146648, ENSG00000171094, ENSG00000141736</td><td class="why">80 assessments; every favorable rating cites an existing evidence record</td></tr>
-<tr><td class="id">P0-3</td><td>Target identity</td>
+<td class="why">80 assessments; every favorable rating cites an existing evidence record<div class="cite">ENSG00000146648, ENSG00000171094</div></td></tr><tr><td class="id">P0-3</td>
+<td><div class="ct">The protein we designed against is the protein we scored</div><div class="cd">The gene is matched to its protein by database identifier, not by gene symbol, and the structure's chain and residue numbering is recorded. Symbols are ambiguous across species and isoforms; identifiers are not.</div></td>
 <td><span class="v" style="background:#57606a">N/A</span></td>
-<td class="cite">—</td><td class="why">no design request in this run</td></tr>
-<tr><td class="id">P0-4</td><td>Deterministic ranking</td>
-<td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">ranking[0], ranking[1]</td><td class="why">identical top-N across repeated runs</td></tr>
-<tr><td class="id">P0-5</td><td>Direction / modality separation</td>
-<td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">ENSG00000146648, ENSG00000171094, ENSG00000141736</td><td class="why">modality mismatches carry an exclusion reason or feasibility rationale</td></tr>
-<tr><td class="id">P0-6</td><td>Honest metrics</td>
+<td class="why">no design request in this run<div class="cite">—</div></td></tr><tr><td class="id">P0-6</td>
+<td><div class="ct">A prediction is never presented as a measurement</div><div class="cd">Every metric names the method and model version that produced it, and a predicted score may not be labelled with the name of a measured binding constant (Kd, IC50). Model confidence is not experimental affinity.</div></td>
 <td><span class="v" style="background:#57606a">N/A</span></td>
-<td class="cite">—</td><td class="why">no candidates produced in this run</td></tr>
-<tr><td class="id">P0-7</td><td>Donor-aware summaries</td>
+<td class="why">no candidates produced in this run<div class="cite">—</div></td></tr></table></div><div class="grp"><h3 style="border-left:4px solid #1a7f37">Durability of the findings</h3><p class="gq">Would you get the same answer tomorrow, and is the conclusion robust rather than an artifact of how the code ran?</p>
+<table><tr><th>row</th><th>what it checks</th><th>verdict</th><th>finding</th></tr><tr><td class="id">P0-4</td>
+<td><div class="ct">Run it twice, get the same ranking</div><div class="cd">Stage 2 is scored repeatedly on identical evidence and must produce an identical order <i>and</i> identical scores. Catches a ranking that secretly depends on the order data arrived in — the classic way a 'top target' changes between two demos.</div></td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="why">identical top-N across repeated runs<div class="cite">ranking[0], ranking[1]</div></td></tr><tr><td class="id">P0-5</td>
+<td><div class="ct">Strong biology and 'we can actually drug it' stay separate</div><div class="cd">A target can have overwhelming disease evidence and still be unreachable by a protein binder. Those are recorded as two independent facts, never blended into one number, and an unreachable target is excluded <i>with its reason kept</i>.</div></td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="why">modality mismatches carry an exclusion reason or feasibility rationale<div class="cite">ENSG00000146648, ENSG00000171094</div></td></tr><tr><td class="id">P0-9</td>
+<td><div class="ct">The design job really ran, and its output survived</div><div class="cd">The compute job has a resolvable identifier, its files are still readable afterwards, and failures keep their error message. 'Finished' and 'produced something usable' are tracked separately.</div></td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="why">no design run in this run<div class="cite">—</div></td></tr><tr><td class="id">P0-10</td>
+<td><div class="ct">One decision, one GPU bill</div><div class="cd">The same request cannot start a second paid design job. Identical inputs hash to the same key, so a double-click or a retry attaches to the existing run instead of paying twice.</div></td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="why">no design request in this run<div class="cite">—</div></td></tr><tr><td class="id">P0-11</td>
+<td><div class="ct">The pipeline is not hardcoded to one disease</div><div class="cd">Two different diseases are run with no code changes in between, at the same commit, and must return genuinely different target lists. Proves the result is retrieved rather than baked in.</div></td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="why">two indications, different real pools, single commit 3bc41a13<div class="cite">agentrun_a19baf79b4f5, agentrun_69991af37a1c</div></td></tr></table></div><div class="grp"><h3 style="border-left:4px solid #9a6700">Honesty about gaps</h3><p class="gq">When the run doesn't know something, does it say so instead of filling the hole?</p>
+<table><tr><th>row</th><th>what it checks</th><th>verdict</th><th>finding</th></tr><tr><td class="id">P0-12</td>
+<td><div class="ct">The headline matches what actually happened</div><div class="cd">The run's own summary verdict is checked against its records — a run may only claim it produced a binder candidate if candidate records exist.</div></td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="why">final_outcome &#x27;evidence_report_only&#x27; consistent with persisted records<div class="cite">agentrun_a19baf79b4f5</div></td></tr><tr><td class="id">J-4</td>
+<td><div class="ct">Every claim is traceable to the step that fetched it</div><div class="cd">Each piece of cited evidence must appear in the run's action log. Closes the loophole where a run logs only its successes: unlogged evidence is indistinguishable from invented evidence.</div></td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="why">all 395 cited evidence ids trace to logged tool actions<div class="cite">ev_ENSG00000019582_accessibility, ev_ENSG00000019582_chembl</div></td></tr></table></div><div class="grp"><h3 style="border-left:4px solid #8250df">Out of scope for this build</h3><p class="gq">Decided against, reported rather than hidden.</p>
+<table><tr><th>row</th><th>what it checks</th><th>verdict</th><th>finding</th></tr><tr><td class="id">P0-7</td>
+<td><div class="ct">Patients are the replicate, not cells</div><div class="cd">Thousands of cells from one donor are one observation, not thousands. Summaries must be computed per donor before being combined across a condition.</div></td>
 <td><span class="v" style="background:#8250df">DESCOPED</span></td>
-<td class="cite">—</td><td class="why">CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.</td></tr>
-<tr><td class="id">P0-8</td><td>Embedding identity</td>
+<td class="why">CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.<div class="cite">—</div></td></tr><tr><td class="id">P0-8</td>
+<td><div class="ct">Cell measurements stay matched to the right cells</div><div class="cd">When expression vectors are joined to cells they must be matched by cell identifier, never by row position, and missing values must stay missing rather than being filled with zero.</div></td>
 <td><span class="v" style="background:#8250df">DESCOPED</span></td>
-<td class="cite">—</td><td class="why">CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.</td></tr>
-<tr><td class="id">P0-9</td><td>Real durable job</td>
-<td><span class="v" style="background:#57606a">N/A</span></td>
-<td class="cite">—</td><td class="why">no design run in this run</td></tr>
-<tr><td class="id">P0-10</td><td>Paid-job idempotency</td>
-<td><span class="v" style="background:#57606a">N/A</span></td>
-<td class="cite">—</td><td class="why">no design request in this run</td></tr>
-<tr><td class="id">P0-11</td><td>Generality across indications</td>
-<td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">agentrun_a19baf79b4f5, agentrun_69991af37a1c</td><td class="why">two indications, different real pools, single commit 3bc41a13</td></tr>
-<tr><td class="id">P0-12</td><td>Outcome honesty</td>
-<td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">agentrun_a19baf79b4f5</td><td class="why">final_outcome &#x27;evidence_report_only&#x27; consistent with persisted records</td></tr>
-<tr><td class="id">J-4</td><td>Log completeness</td>
-<td><span class="v" style="background:#1a7f37">PASS</span></td>
-<td class="cite">ev_ENSG00000019582_accessibility, ev_ENSG00000019582_chembl, ev_ENSG00000019582_expression</td><td class="why">all 395 cited evidence ids trace to logged tool actions</td></tr>
-</table>
+<td class="why">CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.<div class="cite">—</div></td></tr></table></div>
 
-<h2>Out of scope</h2>
-<div class="note">Descoped rows are reported rather than deleted: a requirement dropped by decision is
-a different thing from one a run failed or could not evidence, and that difference has to survive
-into the report or the verdict overstates its own scope. Descoped rows count toward the verdict in
-neither direction.</div><ul><li><b>P0-7</b> — CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.</li><li><b>P0-8</b> — CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.</li></ul>
+<h2>Not covered by this verdict</h2>
+<div class="note sc">Six checks need prose read against records — whether the reasoning trail is genuine,
+whether a cited source actually says what the claim says, whether a quoted passage appears in the paper it
+cites. A deterministic program cannot judge those honestly, so they are listed rather than scored. Most
+fabrication would only be caught here: <b>this CORRECT means "no automatic check failed", not "nothing is
+fabricated"</b>.<ul><li><b>J-1</b> — Trace authenticity</li><li><b>J-2</b> — Claim&lt;-&gt;evidence direction</li><li><b>P0-1b</b> — Rendered vs stored spot check</li><li><b>P1-2</b> — Provenance walk</li><li><b>P1-3</b> — Four data classes distinct</li><li><b>P2-2</b> — Literature claim resolution</li></ul></div>
 
-<h2>Pending: semantic rows</h2>
-<div class="note sc">The verdict above covers rows a deterministic check can decide. These six need prose
-read against records and are <b>not</b> graded here. Most fabrication is only detectable in this pass,
-so a machine CORRECT must not be read as “no fabrication”.</div><ul><li><b>J-1</b> Trace authenticity — Read agent_runs[].tool_action_log. Do the actions show real typed tool calls with arguments, results and per-action reasons that respond to what came …</li><li><b>J-2</b> Claim&lt;-&gt;evidence direction — For each claim in the rendered report, resolve its evidence_ids and check the record&#x27;s `direction` (supports/contradicts/context) matches the claim AS…</li><li><b>P0-1b</b> Rendered vs stored spot check — Pick &gt;=5 values across the report views and confirm each equals its stored record value, and that cached values display their original run time.…</li><li><b>P1-2</b> Provenance walk — Follow &gt;=3 claims from the report to their evidence records and back. Every evidence_id must resolve to a real record.…</li><li><b>P1-3</b> Four data classes distinct — Confirm asserted-literature, observed-metadata, computed and predicted values are never collapsed into one presentation.…</li><li><b>P2-2</b> Literature claim resolution — For demo-critical claims, resolve the DOI/PMID and confirm the stored excerpt appears in the fetched source. Mark the rest &#x27;identifier-verified&#x27;.…</li></ul>
+<h2 class="tp">Talking points</h2>
+<div class="note tp tp">
+<h4>Why bother, when the pipeline has its own tests?</h4>
+<p>Its tests check that the code does what the author intended. This checks whether the output supports what
+the report claims — a different question, and the one a reviewer actually asks.</p>
+<h4>What would a failure have looked like?</h4>
+<p>It found real ones during development. An earlier version of the evidence bridge cited 72 sources that
+didn't exist; the fidelity checks rejected it. A separate audit found the score treats "evidence nobody
+fetched" identically to "evidence measured at zero" — both contribute nothing, so a target with no data
+ranks level with one measured empty.</p>
+<h4>Is the ranking itself right?</h4>
+<p>Out of scope, deliberately. This grades process, not biology. It says the numbers trace to their sources
+and reproduce on re-run — not that EGFR is the correct target for lung adenocarcinoma.</p>
+<h4>What does the score mean?</h4>
+<p>Weight of existing evidence, nothing more. Not a probability of success, and not causality. A heavily
+studied target scores partly on its own popularity, which is why the components are published separately
+rather than only as a total.</p>
+<h4>Why did four checks come back not applicable?</h4>
+<p>These runs stopped after target ranking. The design-job checks — real job, no duplicate GPU billing,
+honest metrics — have nothing to grade yet, and report that rather than passing by default.</p>
+<h4>If a demo goes wrong live</h4>
+<p>A missing artifact makes the run <i>unjudgeable</i>, not incorrect. Silence never scores as success:
+a run that persisted nothing cannot pass, which is the property the whole exercise rests on.</p>
+</div>
 
-<footer>Reproduce: <code>ind2b-judge runs/MONDO_0005061 runs/MONDO_0005105 --repo &lt;pipeline&gt; --rankings rankings.json</code><br>
-Verdict exit codes — 0 CORRECT or PARTIALLY CORRECT · 1 INCORRECT · 2 UNJUDGEABLE</footer>
+<footer>Reproduce: <code>ind2b-judge runs/MONDO_0005061 runs/MONDO_0005105 --repo &lt;pipeline&gt; --rankings rankings.json</code>
+· exit 0 pass · 1 a check failed · 2 too little recorded to judge</footer>
 </div></body></html>
