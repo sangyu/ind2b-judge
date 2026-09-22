@@ -1,0 +1,181 @@
+{
+  "machine_verdicts": [
+    {
+      "id": "P0-1",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "ev_ENSG00000146648_clinical",
+        "ev_ENSG00000146648_affected_pathway",
+        "ev_ENSG00000146648_literature",
+        "ev_ENSG00000146648_genetic_association",
+        "ev_ENSG00000146648_somatic_mutation"
+      ],
+      "reasoning": "449 records all carry an origin label",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-2",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "ENSG00000146648",
+        "ENSG00000171094",
+        "ENSG00000141736",
+        "ENSG00000105976",
+        "ENSG00000165731"
+      ],
+      "reasoning": "80 assessments; every favorable rating cites an existing evidence record",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-3",
+      "verdict": "N/A",
+      "evidence_cited": [],
+      "reasoning": "no design request in this run",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-4",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "ranking[0]",
+        "ranking[1]"
+      ],
+      "reasoning": "identical top-N across repeated runs",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-5",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "ENSG00000146648",
+        "ENSG00000171094",
+        "ENSG00000141736",
+        "ENSG00000105976",
+        "ENSG00000165731"
+      ],
+      "reasoning": "modality mismatches carry an exclusion reason or feasibility rationale",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-6",
+      "verdict": "N/A",
+      "evidence_cited": [],
+      "reasoning": "no candidates produced in this run",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-7",
+      "verdict": "DESCOPED",
+      "evidence_cited": [],
+      "reasoning": "CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-8",
+      "verdict": "DESCOPED",
+      "evidence_cited": [],
+      "reasoning": "CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-9",
+      "verdict": "N/A",
+      "evidence_cited": [],
+      "reasoning": "no design run in this run",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-10",
+      "verdict": "N/A",
+      "evidence_cited": [],
+      "reasoning": "no design request in this run",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-11",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "agentrun_a19baf79b4f5",
+        "agentrun_69991af37a1c"
+      ],
+      "reasoning": "two indications, different real pools, single commit 3bc41a13",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-12",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "agentrun_a19baf79b4f5"
+      ],
+      "reasoning": "final_outcome 'evidence_report_only' consistent with persisted records",
+      "tier": "machine"
+    },
+    {
+      "id": "P0-12",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "agentrun_69991af37a1c"
+      ],
+      "reasoning": "final_outcome 'evidence_report_only' consistent with persisted records",
+      "tier": "machine"
+    },
+    {
+      "id": "J-4",
+      "verdict": "PASS",
+      "evidence_cited": [
+        "ev_ENSG00000019582_accessibility",
+        "ev_ENSG00000019582_chembl",
+        "ev_ENSG00000019582_expression",
+        "ev_ENSG00000019582_known_drugs",
+        "ev_ENSG00000019582_literature"
+      ],
+      "reasoning": "all 395 cited evidence ids trace to logged tool actions",
+      "tier": "machine"
+    }
+  ],
+  "machine_overall": "CORRECT",
+  "semantic_tasks": [
+    {
+      "id": "J-1",
+      "name": "Trace authenticity",
+      "instruction": "Read agent_runs[].tool_action_log. Do the actions show real typed tool calls with arguments, results and per-action reasons that respond to what came back -- or is it narration over a fixed pipeline? Cite specific log entries.",
+      "tier": "semantic"
+    },
+    {
+      "id": "J-2",
+      "name": "Claim<->evidence direction",
+      "instruction": "For each claim in the rendered report, resolve its evidence_ids and check the record's `direction` (supports/contradicts/context) matches the claim AS STATED. A contradicting record cited in support of a claim is a FAIL.",
+      "tier": "semantic"
+    },
+    {
+      "id": "P0-1b",
+      "name": "Rendered vs stored spot check",
+      "instruction": "Pick >=5 values across the report views and confirm each equals its stored record value, and that cached values display their original run time.",
+      "tier": "semantic"
+    },
+    {
+      "id": "P1-2",
+      "name": "Provenance walk",
+      "instruction": "Follow >=3 claims from the report to their evidence records and back. Every evidence_id must resolve to a real record.",
+      "tier": "semantic"
+    },
+    {
+      "id": "P1-3",
+      "name": "Four data classes distinct",
+      "instruction": "Confirm asserted-literature, observed-metadata, computed and predicted values are never collapsed into one presentation.",
+      "tier": "semantic"
+    },
+    {
+      "id": "P2-2",
+      "name": "Literature claim resolution",
+      "instruction": "For demo-critical claims, resolve the DOI/PMID and confirm the stored excerpt appears in the fetched source. Mark the rest 'identifier-verified'.",
+      "tier": "semantic"
+    }
+  ],
+  "unverifiable": [],
+  "descoped": {
+    "P0-7": "CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.",
+    "P0-8": "CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade."
+  },
+  "note": "machine_overall covers deterministic rows only. The final verdict requires the semantic pass; any fabrication found there forces INCORRECT regardless of these rows."
+}

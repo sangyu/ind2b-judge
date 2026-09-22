@@ -1,0 +1,104 @@
+<!doctype html><html><head><meta charset="utf-8"><title>ind2b-judge — trust report</title>
+<style>
+*{box-sizing:border-box} body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+color:#1f2328;margin:0;background:#f6f8fa} .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 64px}
+h1{font-size:26px;margin:0 0 4px} h2{font-size:19px;margin:34px 0 12px;padding-bottom:6px;border-bottom:1px solid #d0d7de}
+h3{font-size:16px;margin:0 0 6px} .sub{color:#57606a;margin:0 0 20px}
+.verdict{display:flex;align-items:center;gap:18px;background:#fff;border:1px solid #d0d7de;border-left:6px solid #1a7f37;
+border-radius:8px;padding:18px 22px;margin:18px 0} .verdict .big{font-size:30px;font-weight:700;color:#1a7f37;letter-spacing:-.5px}
+.tally{display:flex;gap:22px;font-size:13px;color:#57606a} .tally b{display:block;font-size:21px;color:#1f2328}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #d0d7de;border-radius:8px;overflow:hidden}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#57606a;background:#f6f8fa;padding:9px 12px;border-bottom:1px solid #d0d7de}
+td{padding:9px 12px;border-bottom:1px solid #eaeef2;vertical-align:top;font-size:13.5px} tr:last-child td{border-bottom:none}
+.id{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;white-space:nowrap}
+.v{color:#fff;padding:2px 9px;border-radius:11px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.cite{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#57606a;max-width:210px;word-break:break-all}
+.why{color:#424a53} .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#fff;border:1px solid #d0d7de;border-radius:8px;padding:16px 18px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#57606a;font-weight:400}
+.meta{color:#57606a;font-size:13px;margin:6px 0} .mini td,.mini th{padding:5px 8px;font-size:13px}
+.mini{border:none;margin:8px 0} ul{margin:6px 0;padding-left:20px} .excl li{font-size:13px;color:#424a53;margin:3px 0}
+.note{background:#fff8c5;border:1px solid #d4a72c55;border-radius:6px;padding:12px 16px;font-size:13.5px;margin:14px 0}
+.note.sc{background:#eef3ff;border-color:#adc0f0} code{background:#eff1f3;padding:1px 5px;border-radius:4px;font-size:12.5px}
+footer{margin-top:30px;color:#57606a;font-size:12.5px;border-top:1px solid #d0d7de;padding-top:14px}
+</style></head><body><div class="wrap">
+<h1>Trust report — indication2binder</h1>
+<p class="sub">Graded by <code>ind2b-judge</code> from persisted run artifacts ·
+pipeline at <code>3bc41a1</code> · 2026-09-22</p>
+
+<div class="verdict"><div><div class="big">CORRECT</div>
+<div style="font-size:12.5px;color:#57606a">deterministic rows</div></div>
+<div class="tally">
+<div><b>8</b>passed</div><div><b>0</b>failed</div><div><b>0</b>unverifiable</div>
+<div><b>4</b>not applicable</div><div><b>2</b>descoped</div></div></div>
+
+<div class="note">The judge imports nothing from the pipeline. Its only inputs are the files a run
+persisted — <code>stage0_disease.json</code>, <code>stage1_evidence.json</code>,
+<code>stage2_ranked_targets.csv</code> — so it cannot be made to pass by the system it grades.
+Every PASS cites a record id; an uncited PASS is downgraded automatically.</div>
+
+<h2>What was graded</h2>
+<div class="cards"><div class="card"><h3>lung adenocarcinoma <span class="mono">MONDO_0005061</span></h3>
+<p class="meta">resolved by <code>exact_name_match</code> · pool <b>40</b> of <b>8,760</b> associated targets · <b>12</b> pass the surface-accessibility gate</p>
+<table class="mini"><tr><th>#</th><th>target</th><th>score</th><th>ectodomain</th></tr><tr><td>1</td><td><b>EGFR</b></td><td>0.785</td><td>621 aa</td></tr><tr><td>2</td><td><b>ALK</b></td><td>0.721</td><td>1020 aa</td></tr><tr><td>3</td><td><b>ERBB2</b></td><td>0.695</td><td>630 aa</td></tr><tr><td>4</td><td><b>MET</b></td><td>0.679</td><td>908 aa</td></tr><tr><td>5</td><td><b>RET</b></td><td>0.674</td><td>607 aa</td></tr></table>
+<p class="meta">Excluded with a recorded reason (not dropped):</p><ul class="excl"><li><b>TP53</b> — no_extracellular_topology_or_secretion</li><li><b>KRAS</b> — membrane_associated_on_cytoplasmic_side</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li></ul></div><div class="card"><h3>melanoma <span class="mono">MONDO_0005105</span></h3>
+<p class="meta">resolved by <code>exact_name_match</code> · pool <b>40</b> of <b>13,604</b> associated targets · <b>10</b> pass the surface-accessibility gate</p>
+<table class="mini"><tr><th>#</th><th>target</th><th>score</th><th>ectodomain</th></tr><tr><td>1</td><td><b>PDGFRA</b></td><td>0.73</td><td>505 aa</td></tr><tr><td>2</td><td><b>CTLA4</b></td><td>0.663</td><td>126 aa</td></tr><tr><td>3</td><td><b>KIT</b></td><td>0.645</td><td>499 aa</td></tr><tr><td>4</td><td><b>KDR</b></td><td>0.62</td><td>745 aa</td></tr><tr><td>5</td><td><b>CSF3R</b></td><td>0.569</td><td>603 aa</td></tr></table>
+<p class="meta">Excluded with a recorded reason (not dropped):</p><ul class="excl"><li><b>CDKN2A</b> — no_extracellular_topology_or_secretion</li><li><b>BRAF</b> — no_extracellular_topology_or_secretion</li><li><b>BAP1</b> — no_extracellular_topology_or_secretion</li></ul></div></div>
+
+<h2>Row-by-row verdict</h2>
+<table><tr><th>row</th><th>check</th><th>verdict</th><th>cited</th><th>finding</th></tr><tr><td class="id">P0-1</td><td>Origin labels</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">ev_ENSG00000146648_clinical, ev_ENSG00000146648_affected_pathway, ev_ENSG00000146648_literature</td><td class="why">449 records all carry an origin label</td></tr>
+<tr><td class="id">P0-2</td><td>Evidence links</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">ENSG00000146648, ENSG00000171094, ENSG00000141736</td><td class="why">80 assessments; every favorable rating cites an existing evidence record</td></tr>
+<tr><td class="id">P0-3</td><td>Target identity</td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="cite">—</td><td class="why">no design request in this run</td></tr>
+<tr><td class="id">P0-4</td><td>Deterministic ranking</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">ranking[0], ranking[1]</td><td class="why">identical top-N across repeated runs</td></tr>
+<tr><td class="id">P0-5</td><td>Direction / modality separation</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">ENSG00000146648, ENSG00000171094, ENSG00000141736</td><td class="why">modality mismatches carry an exclusion reason or feasibility rationale</td></tr>
+<tr><td class="id">P0-6</td><td>Honest metrics</td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="cite">—</td><td class="why">no candidates produced in this run</td></tr>
+<tr><td class="id">P0-7</td><td>Donor-aware summaries</td>
+<td><span class="v" style="background:#8250df">DESCOPED</span></td>
+<td class="cite">—</td><td class="why">CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.</td></tr>
+<tr><td class="id">P0-8</td><td>Embedding identity</td>
+<td><span class="v" style="background:#8250df">DESCOPED</span></td>
+<td class="cite">—</td><td class="why">CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.</td></tr>
+<tr><td class="id">P0-9</td><td>Real durable job</td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="cite">—</td><td class="why">no design run in this run</td></tr>
+<tr><td class="id">P0-10</td><td>Paid-job idempotency</td>
+<td><span class="v" style="background:#57606a">N/A</span></td>
+<td class="cite">—</td><td class="why">no design request in this run</td></tr>
+<tr><td class="id">P0-11</td><td>Generality across indications</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">agentrun_a19baf79b4f5, agentrun_69991af37a1c</td><td class="why">two indications, different real pools, single commit 3bc41a13</td></tr>
+<tr><td class="id">P0-12</td><td>Outcome honesty</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">agentrun_a19baf79b4f5</td><td class="why">final_outcome &#x27;evidence_report_only&#x27; consistent with persisted records</td></tr>
+<tr><td class="id">J-4</td><td>Log completeness</td>
+<td><span class="v" style="background:#1a7f37">PASS</span></td>
+<td class="cite">ev_ENSG00000019582_accessibility, ev_ENSG00000019582_chembl, ev_ENSG00000019582_expression</td><td class="why">all 395 cited evidence ids trace to logged tool actions</td></tr>
+</table>
+
+<h2>Out of scope</h2>
+<div class="note">Descoped rows are reported rather than deleted: a requirement dropped by decision is
+a different thing from one a run failed or could not evidence, and that difference has to survive
+into the report or the verdict overstates its own scope. Descoped rows count toward the verdict in
+neither direction.</div><ul><li><b>P0-7</b> — CELLxGENE Census cellular context was descoped for this build; the pipeline carries no per-donor expression summaries to grade.</li><li><b>P0-8</b> — CELLxGENE Census embeddings were descoped for this build; the pipeline retrieves no precomputed cell embeddings to grade.</li></ul>
+
+<h2>Pending: semantic rows</h2>
+<div class="note sc">The verdict above covers rows a deterministic check can decide. These six need prose
+read against records and are <b>not</b> graded here. Most fabrication is only detectable in this pass,
+so a machine CORRECT must not be read as “no fabrication”.</div><ul><li><b>J-1</b> Trace authenticity — Read agent_runs[].tool_action_log. Do the actions show real typed tool calls with arguments, results and per-action reasons that respond to what came …</li><li><b>J-2</b> Claim&lt;-&gt;evidence direction — For each claim in the rendered report, resolve its evidence_ids and check the record&#x27;s `direction` (supports/contradicts/context) matches the claim AS…</li><li><b>P0-1b</b> Rendered vs stored spot check — Pick &gt;=5 values across the report views and confirm each equals its stored record value, and that cached values display their original run time.…</li><li><b>P1-2</b> Provenance walk — Follow &gt;=3 claims from the report to their evidence records and back. Every evidence_id must resolve to a real record.…</li><li><b>P1-3</b> Four data classes distinct — Confirm asserted-literature, observed-metadata, computed and predicted values are never collapsed into one presentation.…</li><li><b>P2-2</b> Literature claim resolution — For demo-critical claims, resolve the DOI/PMID and confirm the stored excerpt appears in the fetched source. Mark the rest &#x27;identifier-verified&#x27;.…</li></ul>
+
+<footer>Reproduce: <code>ind2b-judge runs/MONDO_0005061 runs/MONDO_0005105 --repo &lt;pipeline&gt; --rankings rankings.json</code><br>
+Verdict exit codes — 0 CORRECT or PARTIALLY CORRECT · 1 INCORRECT · 2 UNJUDGEABLE</footer>
+</div></body></html>

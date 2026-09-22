@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ind2b-judge"
+version = "0.1.0"
+description = "Independent trust grader for indication2binder runs: grades persisted artifacts, never imports the pipeline."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# pandas only, deliberately. The judge reads stage-2's CSV and nothing else;
+# it must stay installable without the pipeline's structural stack so it can
+# run in CI, on a laptop, or beside a run directory copied off a cluster.
+dependencies = ["pandas>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+ind2b-judge = "ind2b_judge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ind2b_judge*"]
